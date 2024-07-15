@@ -1,16 +1,16 @@
 # Learn Redis
 
-This repository is designed to help you learn about Redis, a powerful in-memory data store. 
+This repository is designed to help you learn about Redis, a powerful in-memory data store.
 
 ## Why Redis?
 
 Redis offers a wide range of data structures and features, making it suitable for various use cases:
 
-* **Caching:** Improve application performance by storing frequently accessed data in memory.
-* **Session Management:** Store user sessions efficiently and securely.
-* **Real-time Data:** Handle real-time data updates and notifications.
-* **Leaderboards and Rankings:** Implement leaderboards and ranking systems.
-* **Queues and Pub/Sub:** Build robust messaging and event-driven systems.
+- **Caching:** Improve application performance by storing frequently accessed data in memory.
+- **Session Management:** Store user sessions efficiently and securely.
+- **Real-time Data:** Handle real-time data updates and notifications.
+- **Leaderboards and Rankings:** Implement leaderboards and ranking systems.
+- **Queues and Pub/Sub:** Build robust messaging and event-driven systems.
 
 ## Getting Started
 
@@ -18,10 +18,30 @@ Redis offers a wide range of data structures and features, making it suitable fo
 2. **Start Redis Server:** Run `redis-server` in your terminal.
 3. **Connect to Redis:** Use a Redis client library or tool (e.g., `redis-cli`).
 
-## Repository Structure
+### Strings
 
-This repository will contain:
+```sh
+# insert and retrieve and delete data on redis
+set key value
+get key
+  - value #this is a command result
+del key
 
-* **Basic Concepts:** Introduction to Redis data structures, commands, and concepts.
-* **Practical Examples:** Code examples demonstrating various Redis use cases.
-* **Advanced Topics:** Explore advanced features like Redis modules, clustering, and security.
+# append command: it will replace/update existing key with the value provided, if key key doesn`t exist redis will create it
+append key value
+
+# keys command: get all the value with regex pattern
+keys key_with_regex
+keys data* # redis gives all the value of keys if the key name match with the regex
+  - value_data1
+  - value_data2
+  - value_data2
+
+# getrange command: get value of the key but you can set how many length it will come up, the index start from 0
+getrange data1 0 3
+  - hell # "hello from redis"
+
+# mget & mset commands: get * set multiple key
+mset key1 hallo key2 hallo2 key3 hallo3
+mget key1 key2 key3
+```
