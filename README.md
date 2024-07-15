@@ -45,3 +45,12 @@ getrange data1 0 3
 mset key1 hallo key2 hallo2 key3 hallo3
 mget key1 key2 key3
 ```
+
+### Expiration
+
+```bash
+# expire command: set expiration time on the key, the time will be on seconds
+expire data1 60 # data1 will be removed automatically after a minute
+setex data10 60 "data10 example" #create key and value with expire set up, will be removed after a minute
+ttl data1 # check how many expire second left
+```
