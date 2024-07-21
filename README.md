@@ -91,3 +91,25 @@ flushall # remove all data from all database
 select 0
 keys * # -> (empty array) because of you did flushall command
 ```
+
+### Pipeline
+
+```sh
+# Redis pipeline used to transfer data from database to redis in a big amount
+# So instead of set on by one redis offers feature for transfer all the data using 1 line command
+# I get redis-with-command directory and inside of it i have sets.txt file within command folder, its just a 1000 keys that i want to transfer to redis
+# Once you set up the container and get into redis cli i can do
+cat sets.txt | redis-cli --pipe
+    # volumes:
+      # - ./config/redis.conf:/usr/local/etc/redis/redis.conf
+      # - ./command:/usr/local/etc/command
+
+# Notice that i put the command directory inside etc folder
+# If the cd into `/usr/local/etc/command` the command ls -l -> i got some folder and one of those is sets.txt
+# Not get into redis-cli and command `keys *`
+# You see 1000 keys then
+```
+
+<div align="center">
+  <img src="assets/1.png" />
+</div>

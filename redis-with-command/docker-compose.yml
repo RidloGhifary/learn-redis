@@ -1,0 +1,12 @@
+version: "0.0.1"
+
+services:
+  redis:
+    container_name: learn_redis
+    image: redis
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - 6379:6379
+    volumes:
+      - ./config/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./command:/usr/local/etc/command
