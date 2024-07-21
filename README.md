@@ -48,9 +48,25 @@ mget key1 key2 key3
 
 ### Expiration
 
-```bash
+```sh
 # expire command: set expiration time on the key, the time will be on seconds
 expire data1 60 # data1 will be removed automatically after a minute
 setex data10 60 "data10 example" #create key and value with expire set up, will be removed after a minute
 ttl data1 # check how many expire second left
+```
+
+### Increment & Decrement
+
+```sh
+# In order to do increment & decrement, the value should be a number
+incr counter # This command do create a key name counter and incremented it into 1, the default value is 0
+get counter # -> 1
+incr counter # -> 2
+decr counter # -> 1
+
+incrby counter 10 # This command do increment the value of the key by the number provided -> 1 + 10 = 11
+decr counter 5 # 11 - 5 = 6
+
+set keystr hallo
+incr keyst # You`ll get (error) ERR value is not an integer or out of range
 ```
