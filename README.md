@@ -113,3 +113,21 @@ cat sets.txt | redis-cli --pipe
 <div align="center">
   <img src="assets/1.png" />
 </div>
+
+### Transaction
+
+- `multi` -> Mark the start of a transaction block
+- `exec` -> Execute all command issued after MULTI
+- `discard` -> Discard all command issued after MULTI
+
+<img src="assets/2.png" />
+
+- if you open another redis cli and both are running, before you execute the command using exec, keys that you had set won`t set but still in queue
+
+```sh
+multi # -> OK
+set key1 key1
+set key2 key2
+set key3
+exec # I am forcing the command to be executed but on the other hand i got wrong syntax, this will cause an (error) EXECABORT Transaction discarded because of previous errors. and the datas would not be set
+```
