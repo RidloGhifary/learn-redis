@@ -120,7 +120,9 @@ cat sets.txt | redis-cli --pipe
 - `exec` -> Execute all command issued after MULTI
 - `discard` -> Discard all command issued after MULTI
 
-<img src="assets/2.png" />
+<div align="center">
+  <img src="assets/2.png" />
+</div>
 
 - if you open another redis cli and both are running, before you execute the command using exec, keys that you had set won`t set but still in queue
 
@@ -131,3 +133,25 @@ set key2 key2
 set key3
 exec # I am forcing the command to be executed but on the other hand i got wrong syntax, this will cause an (error) EXECABORT Transaction discarded because of previous errors. and the datas would not be set
 ```
+
+### Monitor
+
+- There is a frequently problem when you tried to add data to redis but when you check the data you just added, there is nothing
+- That problem want us to debug our app
+- Redis makes all that easily because they have `monitor` operation
+
+```sh
+# monitor -> listen for al request by the server in real time
+# open up 2 terminal that both run redis-cli, one for monitor and other one for you type down a command
+# because you cannot do anything once you command monitor, it will just show you every activity used
+```
+
+<div align="center">
+  <img src="assets/4.png" />
+</div>
+
+<div align="center">
+  <img src="assets/3.png" />
+</div>
+
+- Notice every command i`d typed it also come up to the monitor so you know what happened on every command
