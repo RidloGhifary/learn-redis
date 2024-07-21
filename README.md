@@ -70,3 +70,24 @@ decr counter 5 # 11 - 5 = 6
 set keystr hallo
 incr keyst # You`ll get (error) ERR value is not an integer or out of range
 ```
+
+### Flush
+
+```sh
+# flushdb > remove all keys from current database
+# flushall > remove all keys from all databases
+
+select 0 # Switch to database 0
+mset key1 key1 key2 key2 key3 key3
+keys * # Get all of data from database 0
+
+select 1 # Switch to database 0
+keys * # -> (empty array)
+mset key1 key1 key2 key2 key3 key3
+keys * # -> key1, key2, key3
+flushdb # remove all the data from database 1
+
+flushall # remove all data from all database
+select 0
+keys * # -> (empty array) because of you did flushall command
+```
