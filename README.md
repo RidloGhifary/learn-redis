@@ -155,3 +155,14 @@ exec # I am forcing the command to be executed but on the other hand i got wrong
 </div>
 
 - Notice every command i`d typed it also come up to the monitor so you know what happened on every command
+
+### Server Information
+
+- Sometimes we need to know some redis server statistic like memory they used, configuration and some others
+- Fortunately redis has this feature, so we can easily gain server information and monitoring
+
+```sh
+# info -> Get information and statistics about the server
+# config <subcommand> (GET | SET | RESTART | REWRITE | HELP) -> Get the value of a configuration parameter
+# slowlog <subcommand> (GET | SET | RESTART | REWRITE | HELP) -> return top entries from the slowlog
+```
