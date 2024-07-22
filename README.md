@@ -303,7 +303,7 @@ bgsave # -> Asynchronously save the database to disk
 - Then trying to connect and you`ll error because the connection is closed
 - Now running it one more time and try get all the key one more time and notice you keep getting all of the data without losing any
 
-# Eviction
+### Eviction
 
 - Things that will happen when storage redis is ran out is redis will reject all the request
 - This is a problem if we are using redis as temporary storage media
