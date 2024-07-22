@@ -1,6 +1,6 @@
 # Learn Redis
 
-This repository is designed to help you learn about Redis, a powerful in-memory data store.
+This repository is designed to help me learn about Redis, a powerful in-memory data store.
 
 ## Why Redis?
 
@@ -302,3 +302,30 @@ bgsave # -> Asynchronously save the database to disk
 - Stop the container that run redis on the other terminal
 - Then trying to connect and you`ll error because the connection is closed
 - Now running it one more time and try get all the key one more time and notice you keep getting all of the data without losing any
+
+# Eviction
+
+- Things that will happen when storage redis is ran out is redis will reject all the request
+- This is a problem if we are using redis as temporary storage media
+- Will be great if redis has feature like removing data from past that barely used
+- Redis support eviction feature
+- To activate this feature, we need to tell redis how much memory will be used, and how the strategy for doing the eviction
+
+<div align="center">
+  <img src="assets/13.png" />
+</div>
+<div align="center">
+  <img src="assets/14.png" />
+</div>
+
+- The recommended way is to set maxmemory so that you memory wont crash
+
+<div align="center">
+  <img src="assets/15.png" />
+</div>
+
+```sh
+# i`ve set redis max memory is 100mb
+# and how Redis will select what to remove when max memory is reached is
+maxmemory-policy allkeys-lfu # -> Evict any key that least frequently used
+```
