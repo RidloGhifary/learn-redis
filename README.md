@@ -279,3 +279,26 @@ user worker +@list +@connection ~jobs:* on >ffa9203c493aa99 # user example from 
 # and on the other hand, i was trying to to set key with user ridlo which is suppose to be allowed
 # and thats all works
 ```
+
+### Persistence
+
+- Storage media redis is a memory
+- Because of that is redis deleted, all the data will be gone
+- But we can do store data in the memory to the dist, if we want
+- Need to remember that stored process into dist is not real time, and it does regularly with certain configuration
+- So do not use redis to be a storage media persistance, it used to help database persistence
+
+```sh
+save # -> Synchronously save the dataset to disk
+bgsave # -> Asynchronously save the database to disk
+```
+
+<div align="center">
+  <img src="assets/12.png" />
+</div>
+
+- Open up 2 terminal
+- Run redis on one of the terminal and try to set keys and save it
+- Stop the container that run redis on the other terminal
+- Then trying to connect and you`ll error because the connection is closed
+- Now running it one more time and try get all the key one more time and notice you keep getting all of the data without losing any
