@@ -241,3 +241,41 @@ auth <username> <password> # -> auth ridlo verysecretpassword1234
 <div align="center">
   <img src="assets/8.png" />
 </div>
+
+### Authorization
+
+- This is a process to give access right to the identity that has authenticated
+- Redis support this feature, we can even restrict what command user can do and cant
+
+```sh
+user worker +@list +@connection ~jobs:* on >ffa9203c493aa99 # user example from redis config
+
+# defined user with name worker and password
+# on -> defined that this user is available
+# +@ -> allow the execution of all the commands in such category with valid categories `command acl cat to list all the category`
+# ~ -> Add a pattern of keys that can be mentioned as part of commands. For instance ~jobs:* allows all the keys with following start word jobs.
+```
+
+<div align="center">
+  <img src="assets/9.png" />
+</div>
+
+```sh
+# Iam setting 3 user with different access command
+# user ghifary only be able to read the data, so he cant do anything unless read
+# user ridlo given access to all command without exception
+```
+
+<div align="center">
+  <img src="assets/10.png" />
+</div>
+
+<div align="center">
+  <img src="assets/11.png" />
+</div>
+
+```sh
+# i was trying to set key with user ghifary which is suppose to be not allowed
+# and on the other hand, i was trying to to set key with user ridlo which is suppose to be allowed
+# and thats all works
+```
