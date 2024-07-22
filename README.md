@@ -166,3 +166,22 @@ exec # I am forcing the command to be executed but on the other hand i got wrong
 # config <subcommand> (GET | SET | RESTART | REWRITE | HELP) -> Get the value of a configuration parameter
 # slowlog <subcommand> (GET | SET | RESTART | REWRITE | HELP) -> return top entries from the slowlog
 ```
+
+### Client Connection
+
+- Every client information will be stored on redis server
+- Probably you wanna get information how many client that connects to the server or might make a limit
+
+```sh
+# client list -> Get the list of client connections
+# client id -> Returns the client ID for the current connection
+# client kill ip:port -> Kill the connection of a client
+
+client list # You`ll get some information such as id, ip address, name, age, database, etc
+client id # Return what id you are currently on
+client kill ip:port # Kill connection where ip port is match with port provided, But there is something wonderful that event if you are trying to kill the conection redis will automatically reconnect and once you tried to kill and command client id, you`ll get different id which means that you are connected
+```
+
+<div align="center">
+  <img src="assets/5.png" />
+</div>
