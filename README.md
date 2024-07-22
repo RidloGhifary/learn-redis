@@ -209,10 +209,35 @@ client kill ip:port # Kill connection where ip port is match with port provided,
 # But try to command ping, the expected response is pong, because thats just natural response from redis which says you are connected
 # instead of you got `PONG`, you got access denied, remember that your protected mode is still on
 # Even now every host can connect to redis, but redis only listen to 127.0.0.1(localhost)
-# You can make the protected-mode `no` and now every single host will be able to connect and redis will also listen to them
-# Make sure you`ve shuted down then start docker compose if you made changes to redis config
+# You disable the protected-mode `no` and now every single host will be able to connect and redis will also listen to them
+# Make sure you`ve shuted down then start docker compose if you made changes to redis config, but thats not recommended
 ```
 
 <div align="center">
   <img src="assets/6.png" />
+</div>
+
+### Authentication
+
+- Redis has an authentication feature for verified user identity that want to access redis
+- We can add it in the file configuration
+- Redis authentication process is so fast, so be sure to have a string and long password so it wont be brute force easily
+
+<div align="center">
+  <img src="assets/7.png" />
+</div>
+
+```sh
+# Take a look directory name redis-with-acl
+# i have set two user, one with name `ridlo` and password, and one with a default username that allows only for connection
+# default username is set because when we connect to redis, redis is actually automatically set default user behind, and without that you wont be able to even connect to redis, so default user is needed in order to just connect to redis
+
+auth <username> <password> # -> auth ridlo verysecretpassword1234
+# Afterwords you be able to command ping and redis says pong
+# But thats all command you can do, you cant set key get key or others
+# So how to do so, check the Authorization section
+```
+
+<div align="center">
+  <img src="assets/8.png" />
 </div>
