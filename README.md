@@ -185,3 +185,34 @@ client kill ip:port # Kill connection where ip port is match with port provided,
 <div align="center">
   <img src="assets/5.png" />
 </div>
+
+### Security
+
+- As a default, redis listens from all of network interfaces, this might be dangerous because there is possibility redis will be exposed
+- But, redis has second layer for checking the connection, `protected mode`. This mode active as a default, means even tho redis can be accessed from anywhere
+- Redis only want to receive request from `127.0.0.1(localhost)`
+- Check on the redis config for more details
+
+```sh
+# Take a look on a redis-with-security directory
+# Go to the redis config and you`ll find configuration looks like image below
+# Now check the docker compose on redis-with-security directory
+# we are gonna try access redis from redis-client and know whether redis will allow it or nor
+# The expected response is Connection refused because we set redis will only listen to port 127.0.0.1(localhost) or it own
+# Open 2 terminal, one for running learn_redis container, one for access redis through redis-client
+# On the second terminal where you are trying to access redis from redis-client
+# Command redis-cli -h learn_redis -> Could not connect to Redis at learn_redis:6379: Connection refused
+# Cannot connect because we have set redis to only listen to 127.0.0.1(localhost)
+
+# Different response if you comment line on redis config which says `bind 127.0.0.1 -::1`
+# Now you are able to access redis from anywhere
+# But try to command ping, the expected response is pong, because thats just natural response from redis which says you are connected
+# instead of you got `PONG`, you got access denied, remember that your protected mode is still on
+# Even now every host can connect to redis, but redis only listen to 127.0.0.1(localhost)
+# You can make the protected-mode `no` and now every single host will be able to connect and redis will also listen to them
+# Make sure you`ve shuted down then start docker compose if you made changes to redis config
+```
+
+<div align="center">
+  <img src="assets/6.png" />
+</div>
